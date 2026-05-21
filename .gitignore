@@ -1,0 +1,32 @@
+# Build artefacts
+build/
+*.o
+*.d
+*.a
+*.so
+*.dylib
+
+# Binary + runtime log
+plazza
+plazza.log
+
+# Coverage
+*.gcov
+*.gcda
+*.gcno
+
+# Editor cruft
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+.*
+*.md
+
+# Exceptions: keep the repo bootable
+!.gitignore
+!.gitkeep
+!.gitattributes
