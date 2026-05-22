@@ -10,6 +10,7 @@ RED			=	\033[1;31m
 RESET		=	\033[0m
 
 SRC			=	src/main.cpp							\
+				src/cli/Args.cpp						\
 
 OBJ			=	$(SRC:.cpp=.o)
 
