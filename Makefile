@@ -21,6 +21,7 @@ LIB_OBJ		=	$(LIB_SRC:.cpp=.o)
 TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/common/test_errors.cpp			\
 				tests/cli/test_args.cpp					\
+				tests/concurrency/test_mutex.cpp		\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
