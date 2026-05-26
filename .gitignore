@@ -32,3 +32,4 @@ plazza.log
 !.gitattributes
 
 !/README.md
+tests/unit_tests

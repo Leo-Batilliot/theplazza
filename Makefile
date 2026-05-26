@@ -18,6 +18,7 @@ LIB_SRC		=	$(filter-out src/main.cpp,$(SRC))
 LIB_OBJ		=	$(LIB_SRC:.cpp=.o)
 
 TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
+				tests/common/test_errors.cpp			\
 				tests/cli/test_args.cpp					\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
