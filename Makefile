@@ -11,6 +11,7 @@ RESET		=	\033[0m
 
 SRC			=	src/main.cpp							\
 				src/cli/Args.cpp						\
+				src/concurrency/Mutex.cpp				\
 
 OBJ			=	$(SRC:.cpp=.o)
 
