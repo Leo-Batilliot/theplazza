@@ -30,3 +30,5 @@ plazza.log
 !.gitignore
 !.gitkeep
 !.gitattributes
+
+!/README.md
