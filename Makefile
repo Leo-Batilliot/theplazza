@@ -14,6 +14,16 @@ SRC			=	src/main.cpp							\
 
 OBJ			=	$(SRC:.cpp=.o)
 
+LIB_SRC		=	$(filter-out src/main.cpp,$(SRC))
+LIB_OBJ		=	$(LIB_SRC:.cpp=.o)
+
+TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
+				tests/cli/test_args.cpp					\
+
+TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
+TESTS_BIN	=	tests/unit_tests
+TESTS_LDFLAGS	=	-lcriterion
+
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
@@ -24,14 +34,22 @@ $(NAME):	$(OBJ)
 	@printf "$(CYAN)Compiling $<$(RESET)\n"
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+$(TESTS_BIN):	$(LIB_OBJ) $(TESTS_OBJ)
+	@printf "$(GREEN)Linking $(TESTS_BIN)$(RESET)\n"
+	$(CXX) -o $@ $^ $(LDFLAGS) $(TESTS_LDFLAGS)
+
+tests_run:	$(TESTS_BIN)
+	@printf "$(CYAN)Running tests$(RESET)\n"
+	./$(TESTS_BIN)
+
 clean:
 	@printf "$(RED)Cleaning objects$(RESET)\n"
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(TESTS_OBJ)
 
 fclean:	clean
 	@printf "$(RED)Cleaning binaries$(RESET)\n"
-	rm -f $(NAME) plazza.log
+	rm -f $(NAME) $(TESTS_BIN) plazza.log
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re tests_run
