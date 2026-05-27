@@ -14,6 +14,15 @@ SRC			=	src/main.cpp							\
 				src/concurrency/Mutex.cpp				\
 				src/concurrency/ConditionVar.cpp		\
 				src/concurrency/Thread.cpp				\
+				src/concurrency/Process.cpp				\
+				src/pizza/Pizza.cpp						\
+				src/pizza/PizzaFactory.cpp				\
+				src/pizza/Margarita.cpp					\
+				src/pizza/Regina.cpp					\
+				src/pizza/Americana.cpp					\
+				src/pizza/Fantasia.cpp					\
+				src/parser/Lexer.cpp					\
+				src/parser/Parser.cpp					\
 
 OBJ			=	$(SRC:.cpp=.o)
 
@@ -26,6 +35,10 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/concurrency/test_mutex.cpp		\
 				tests/concurrency/test_condvar.cpp		\
 				tests/concurrency/test_thread.cpp		\
+				tests/concurrency/test_process.cpp		\
+				tests/pizza/test_factory.cpp			\
+				tests/parser/test_lexer.cpp				\
+				tests/parser/test_parser.cpp			\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
