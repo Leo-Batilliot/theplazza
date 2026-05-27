@@ -23,6 +23,7 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/common/test_errors.cpp			\
 				tests/cli/test_args.cpp					\
 				tests/concurrency/test_mutex.cpp		\
+				tests/concurrency/test_condvar.cpp		\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
