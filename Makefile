@@ -13,6 +13,7 @@ SRC			=	src/main.cpp							\
 				src/cli/Args.cpp						\
 				src/concurrency/Mutex.cpp				\
 				src/concurrency/ConditionVar.cpp		\
+				src/concurrency/Thread.cpp				\
 
 OBJ			=	$(SRC:.cpp=.o)
 
