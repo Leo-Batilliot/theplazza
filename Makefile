@@ -23,6 +23,11 @@ SRC			=	src/main.cpp							\
 				src/pizza/Fantasia.cpp					\
 				src/parser/Lexer.cpp					\
 				src/parser/Parser.cpp					\
+				src/ipc/Serializer.cpp					\
+				src/ipc/IpcChannel.cpp					\
+				src/ipc/Messages.cpp					\
+				src/ipc/NamedPipeChannel.cpp			\
+				src/kitchen/Stock.cpp					\
 
 OBJ			=	$(SRC:.cpp=.o)
 
@@ -39,6 +44,9 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/pizza/test_factory.cpp			\
 				tests/parser/test_lexer.cpp				\
 				tests/parser/test_parser.cpp			\
+				tests/ipc/test_serializer.cpp			\
+				tests/ipc/test_named_pipe.cpp			\
+				tests/kitchen/test_stock.cpp			\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
