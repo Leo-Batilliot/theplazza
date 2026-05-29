@@ -28,6 +28,7 @@ SRC			=	src/main.cpp							\
 				src/ipc/Messages.cpp					\
 				src/ipc/NamedPipeChannel.cpp			\
 				src/kitchen/Stock.cpp					\
+				src/kitchen/ThreadPool.cpp				\
 
 OBJ			=	$(SRC:.cpp=.o)
 
@@ -47,6 +48,7 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/ipc/test_serializer.cpp			\
 				tests/ipc/test_named_pipe.cpp			\
 				tests/kitchen/test_stock.cpp			\
+				tests/kitchen/test_threadpool.cpp		\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
