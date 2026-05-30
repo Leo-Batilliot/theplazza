@@ -31,6 +31,8 @@ SRC			=	src/main.cpp							\
 				src/kitchen/ThreadPool.cpp				\
 				src/kitchen/Cook.cpp					\
 				src/kitchen/Restocker.cpp				\
+				src/kitchen/Capacity.cpp				\
+				src/kitchen/IdleMonitor.cpp				\
 
 OBJ			=	$(SRC:.cpp=.o)
 
@@ -52,6 +54,7 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/kitchen/test_stock.cpp			\
 				tests/kitchen/test_threadpool.cpp		\
 				tests/kitchen/test_cook.cpp				\
+				tests/kitchen/test_kitchen_state.cpp	\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
