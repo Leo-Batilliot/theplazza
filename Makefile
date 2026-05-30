@@ -34,6 +34,7 @@ SRC			=	src/main.cpp							\
 				src/kitchen/Capacity.cpp				\
 				src/kitchen/IdleMonitor.cpp				\
 				src/kitchen/Kitchen.cpp					\
+				src/reception/Shell.cpp					\
 
 OBJ			=	$(SRC:.cpp=.o)
 DEPS		=	$(OBJ:.o=.d) $(TESTS_OBJ:.o=.d)
@@ -58,6 +59,7 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/kitchen/test_cook.cpp				\
 				tests/kitchen/test_kitchen_state.cpp	\
 				tests/kitchen/test_kitchen_e2e.cpp		\
+				tests/reception/test_shell.cpp			\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
