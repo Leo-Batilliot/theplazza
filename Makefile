@@ -1,5 +1,5 @@
 CXX			=	g++
-CXXFLAGS	=	-Wall -Wextra -Werror -std=c++17 -Iinclude -Isrc
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++17 -Iinclude -Isrc -MMD -MP
 LDFLAGS		=
 
 NAME		=	plazza
@@ -36,6 +36,7 @@ SRC			=	src/main.cpp							\
 				src/kitchen/Kitchen.cpp					\
 
 OBJ			=	$(SRC:.cpp=.o)
+DEPS		=	$(OBJ:.o=.d) $(TESTS_OBJ:.o=.d)
 
 LIB_SRC		=	$(filter-out src/main.cpp,$(SRC))
 LIB_OBJ		=	$(LIB_SRC:.cpp=.o)
@@ -82,7 +83,7 @@ tests_run:	$(TESTS_BIN)
 
 clean:
 	@printf "$(RED)Cleaning objects$(RESET)\n"
-	rm -f $(OBJ) $(TESTS_OBJ)
+	rm -f $(OBJ) $(TESTS_OBJ) $(DEPS)
 
 fclean:	clean
 	@printf "$(RED)Cleaning binaries$(RESET)\n"
@@ -91,3 +92,5 @@ fclean:	clean
 re:	fclean all
 
 .PHONY:	all clean fclean re tests_run
+
+-include $(DEPS)

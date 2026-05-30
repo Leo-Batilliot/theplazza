@@ -22,6 +22,7 @@ public:
     virtual std::optional<std::vector<std::uint8_t>> receive() = 0;
     virtual void close() = 0;
     [[nodiscard]] virtual bool isOpen() const noexcept = 0;
+    [[nodiscard]] virtual int readFd() const noexcept { return -1; }
 
     IpcChannel &operator<<(const Serializer &serializer);
     IpcChannel &operator>>(Deserializer &out);

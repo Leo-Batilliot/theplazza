@@ -70,6 +70,7 @@ private:
 
     concurrency::Mutex _sendMutex;
     std::atomic<bool> _running;
+    std::atomic<bool> _readerStop;
 };
 
 }

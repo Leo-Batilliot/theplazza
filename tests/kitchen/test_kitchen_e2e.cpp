@@ -158,6 +158,7 @@ Test(kitchen_e2e, single_order_yields_pizza_done, .timeout = 10)
     cr_assert_eq(done.kitchenId, 7);
 
     sendMsg(channel, Message{ShutdownMsg{}});
+    channel.close();
     reapChild(child, 5s);
 }
 
@@ -177,6 +178,7 @@ Test(kitchen_e2e, status_request_returns_reply, .timeout = 10)
     cr_assert_eq(status.cooksTotal, 2u);
 
     sendMsg(channel, Message{ShutdownMsg{}});
+    channel.close();
     reapChild(child, 5s);
 }
 
@@ -201,6 +203,7 @@ Test(kitchen_e2e, multiple_orders_all_complete, .timeout = 10)
     cr_assert_eq(static_cast<int>(seen.size()), total);
 
     sendMsg(channel, Message{ShutdownMsg{}});
+    channel.close();
     reapChild(child, 5s);
 }
 

@@ -5,6 +5,9 @@
 #include "pizza/Pizza.hpp"
 #include "pizza/PizzaFactory.hpp"
 
+#include <sys/select.h>
+
+#include <cerrno>
 #include <memory>
 #include <mutex>
 #include <utility>
@@ -28,7 +31,8 @@ Kitchen::Kitchen(KitchenConfig config)
       _restocker(_stock, config.restockPeriod),
       _shutdownRequested(false),
       _channelClosed(false),
-      _running(false)
+      _running(false),
+      _readerStop(false)
 {
     if (config.cookCount == 0)
         throw KitchenError("Kitchen: cookCount must be > 0");
@@ -77,17 +81,37 @@ void Kitchen::run(ipc::IpcChannel &channel)
     }
 
     _running.store(false);
+    _readerStop.store(true);
     _restocker.stop();
     _stock.shutdown();
     _pool.shutdown();
-    channel.close();
     if (reader.joinable())
         reader.join();
+    channel.close();
 }
 
 void Kitchen::readerLoop(ipc::IpcChannel &channel)
 {
-    while (true) {
+    const int fd = channel.readFd();
+    while (!_readerStop.load()) {
+        if (fd >= 0) {
+            fd_set set;
+            FD_ZERO(&set);
+            FD_SET(fd, &set);
+            struct timeval tv;
+            tv.tv_sec  = 0;
+            tv.tv_usec = 100 * 1000;
+            const int sel = ::select(fd + 1, &set, nullptr, nullptr, &tv);
+            if (_readerStop.load())
+                return;
+            if (sel < 0) {
+                if (errno == EINTR)
+                    continue;
+                break;
+            }
+            if (sel == 0)
+                continue;
+        }
         std::optional<std::vector<std::uint8_t>> frame;
         try {
             frame = channel.receive();
@@ -129,8 +153,7 @@ void Kitchen::handleIncoming(ipc::IpcChannel &channel, const ipc::Message &messa
 
 void Kitchen::handleOrder(ipc::IpcChannel &channel, const ipc::OrderMsg &order)
 {
-    if (!_capacity.tryAcquire())
-        return;
+    _capacity.acquire();
     _idle.enter();
 
     auto pizza = pizza::PizzaFactory::instance().create(order.type, order.size);

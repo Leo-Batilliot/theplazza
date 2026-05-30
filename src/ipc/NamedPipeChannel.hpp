@@ -25,7 +25,7 @@ public:
     void close() override;
     [[nodiscard]] bool isOpen() const noexcept override;
 
-    [[nodiscard]] int readFd() const noexcept { return _readFd; }
+    [[nodiscard]] int readFd() const noexcept override { return _readFd; }
     [[nodiscard]] int writeFd() const noexcept { return _writeFd; }
 
     static void createFifo(const std::string &path);

@@ -21,6 +21,12 @@ bool Capacity::tryAcquire()
     return true;
 }
 
+void Capacity::acquire()
+{
+    std::lock_guard<concurrency::Mutex> lock(_mutex);
+    ++_inUse;
+}
+
 void Capacity::release()
 {
     std::lock_guard<concurrency::Mutex> lock(_mutex);

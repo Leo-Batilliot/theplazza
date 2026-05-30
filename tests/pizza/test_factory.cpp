@@ -89,7 +89,7 @@ Test(factory_create, unknown_type_throws)
 {
     const auto &factory = PizzaFactory::instance();
 
-    cr_assert_throw(factory.create(static_cast<PizzaType>(9999), PizzaSize::M),
+    cr_assert_throw((void)factory.create(static_cast<PizzaType>(9999), PizzaSize::M),
         plazza::Error);
 }
 
@@ -97,7 +97,7 @@ Test(factory_create, unknown_name_throws)
 {
     const auto &factory = PizzaFactory::instance();
 
-    cr_assert_throw(factory.createByName("calzone", PizzaSize::M),
+    cr_assert_throw((void)factory.createByName("calzone", PizzaSize::M),
         plazza::Error);
 }
 

@@ -17,6 +17,7 @@ public:
     Capacity &operator=(Capacity &&) = delete;
 
     [[nodiscard]] bool tryAcquire();
+    void acquire();
     void release();
 
     [[nodiscard]] std::size_t inUse() const;
