@@ -73,6 +73,7 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/reception/test_shutdown.cpp		\
 				tests/logging/test_logger.cpp			\
 				tests/reception/test_status.cpp			\
+				tests/stress/test_stress.cpp			\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
