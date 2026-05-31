@@ -37,6 +37,8 @@ SRC			=	src/main.cpp							\
 				src/reception/Shell.cpp					\
 				src/reception/KitchenHandle.cpp			\
 				src/reception/Dispatcher.cpp			\
+				src/reception/Spawner.cpp				\
+				src/reception/ChildReaper.cpp			\
 
 OBJ			=	$(SRC:.cpp=.o)
 DEPS		=	$(OBJ:.o=.d) $(TESTS_OBJ:.o=.d)
