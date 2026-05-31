@@ -1,0 +1,16 @@
+# Suppressions for plazza helgrind audits.
+# Add entries here when helgrind reports a false-positive that we have analyzed
+# and consider safe (e.g., libstdc++ internal synchronization patterns).
+
+{
+   libstdc++-cv-internal
+   Helgrind:Race
+   ...
+   fun:__gthread_*
+}
+
+{
+   libcriterion-internal
+   Helgrind:Race
+   obj:*/libcriterion.so*
+}
