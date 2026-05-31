@@ -2,6 +2,7 @@
 
 #include "common/Errors.hpp"
 #include "reception/SignalHandler.hpp"
+#include "reception/StatusCommand.hpp"
 
 #include <chrono>
 #include <mutex>
@@ -142,9 +143,8 @@ void Reception::onStatusCommand()
     std::ostringstream oss;
     oss << "status: " << _kitchens.size() << " kitchens";
     for (const auto &entry : _kitchens) {
-        oss << " | k" << entry->handle->id()
-            << " inFlight=" << entry->handle->inFlight()
-            << "/" << entry->handle->maxConcurrent();
+        oss << " | " << StatusCommand::formatHandle(entry->handle->id(),
+            entry->handle->inFlight(), entry->handle->maxConcurrent());
         try {
             entry->handle->sendStatusRequest();
         } catch (...) {
@@ -211,10 +211,7 @@ void Reception::onIncoming(KitchenEntry &entry, const ipc::Message &message)
             oss << "pizza done order=" << value.orderId << " kitchen=" << value.kitchenId;
             log(oss.str());
         } else if constexpr (std::is_same_v<T, ipc::StatusReplyMsg>) {
-            std::ostringstream oss;
-            oss << "k" << value.kitchenId << " status: busy=" << value.cooksBusy
-                << "/" << value.cooksTotal << " queue=" << value.queueSize;
-            log(oss.str());
+            log("status-reply " + StatusCommand::formatReply(value));
         }
     }, message);
 }

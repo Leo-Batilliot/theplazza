@@ -42,6 +42,7 @@ SRC			=	src/main.cpp							\
 				src/reception/SignalHandler.cpp			\
 				src/reception/Reception.cpp				\
 				src/logging/Logger.cpp					\
+				src/reception/StatusCommand.cpp			\
 
 OBJ			=	$(SRC:.cpp=.o)
 DEPS		=	$(OBJ:.o=.d) $(TESTS_OBJ:.o=.d)
@@ -71,6 +72,7 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/reception/test_e2e.cpp			\
 				tests/reception/test_shutdown.cpp		\
 				tests/logging/test_logger.cpp			\
+				tests/reception/test_status.cpp			\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
