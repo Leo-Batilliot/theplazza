@@ -39,6 +39,8 @@ SRC			=	src/main.cpp							\
 				src/reception/Dispatcher.cpp			\
 				src/reception/Spawner.cpp				\
 				src/reception/ChildReaper.cpp			\
+				src/reception/SignalHandler.cpp			\
+				src/reception/Reception.cpp				\
 
 OBJ			=	$(SRC:.cpp=.o)
 DEPS		=	$(OBJ:.o=.d) $(TESTS_OBJ:.o=.d)
@@ -65,6 +67,8 @@ TESTS_SRC	=	tests/common/test_bootstrap.cpp			\
 				tests/kitchen/test_kitchen_e2e.cpp		\
 				tests/reception/test_shell.cpp			\
 				tests/reception/test_dispatcher.cpp		\
+				tests/reception/test_e2e.cpp			\
+				tests/reception/test_shutdown.cpp		\
 
 TESTS_OBJ	=	$(TESTS_SRC:.cpp=.o)
 TESTS_BIN	=	tests/unit_tests
