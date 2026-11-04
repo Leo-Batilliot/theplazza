@@ -1,5 +1,7 @@
 # Plazza
 
+![Demo](docs/demo.gif)
+
 Pizzeria simulation in C++ combining multi-processing (kitchens), multi-threading
 (cooks) and IPC (reception ↔ kitchens).
 
